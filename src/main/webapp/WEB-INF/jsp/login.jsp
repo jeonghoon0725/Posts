@@ -2,6 +2,12 @@
 <jsp:include page="/WEB-INF/jsp/templates/header.jsp" />
 <html>
 <head>
+<title></title>
+<script type="text/javascript">
+    function signUp() {
+        alert("준비중")
+    }
+</script>
 </head>
 <body>
 <h1>Login</h1>
@@ -15,8 +21,10 @@
         <input type="password" id="password" name="password" autocomplete="off" required />
     </div>
     <div>
-        <button type="submit">Login</button>
+        <button type="submit">Sign-in</button>
+
     </div>
 </form>
+<button onclick="signUp()">Sign-up</button>
 </body>
 </html>

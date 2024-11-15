@@ -1,10 +1,14 @@
 package com.example.demo.blog;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RequestMapping("/blog")
@@ -23,8 +27,9 @@ public class BlogController {
     // Get all blogs
     @GetMapping
     public List<Blog> getAllBlogs(Model model) {
-        List<Blog> posts =  blogService.getAllBlogs();
-        return posts;
+        List<Blog> BlogDataList =  blogService.getAllBlogs();
+
+        return BlogDataList;
     }
 
     // Get blog by ID
@@ -33,9 +38,10 @@ public class BlogController {
         return blogService.getBlogById(id);
     }
 
-    // Update blog
-    @PutMapping("/{id}")
-    public Blog updateBlog(@PathVariable Long id, @RequestBody Blog updatedBlog) {
+    @PostMapping("/update")
+    @ResponseBody
+    public Blog updateBlog(@RequestBody Blog updatedBlog) {
+        Long id = updatedBlog.getId();
         return blogService.updateBlog(id, updatedBlog);
     }
 
